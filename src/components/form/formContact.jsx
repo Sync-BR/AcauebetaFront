@@ -24,18 +24,15 @@ const FormContact = () => {
             params.append('email', data.email);
             params.append('message', data.message);
                  
-            await axios
-            .post(url, params)
-        
-            .then((data) => {
-                console.log('sucesso!!!', data.config)
-                toast.success('Contato enviado com sucesso!')
-            })
-            console.log('to passando4')
-            .catch((error) => {
-                console.error('deu ruim', error)
-                toast.error("Ocorreu um erro ao enviar o contato.")
-            })
+            try {
+                const response = await axios.post(url,params);
+                console.log("data on", data)
+                console.log("sucesso!", response.config)
+                toast.success('Contato enviado com sucesso!');
+            } catch (err) {
+                console.error('Conexão Falhou', err)
+                toast.error('Ocorreu um erro ao enviar o contato!')
+            }
     
         } catch (error) {
             console.error('Erro:', error);
