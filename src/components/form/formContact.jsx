@@ -9,15 +9,6 @@ import TextArea from "./textArea";
 import SubmitButton from "./submitBtn";
 import { useForm } from 'react-hook-form';
 
-let nada = "nadinha mermo"
-
-if (!nada) {
-    nada = "tudo agora"
-}else {
-    nada =" -bem tambem"
-}
-const tudo = nada + nada
-
 const FormContact = () => {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
@@ -26,21 +17,16 @@ const FormContact = () => {
         try {
             reset()
 
-            setUsers(data)
-
             const url = `https://zfaerp.hospedagemelastica.com.br/acaueBeta-1.0-SNAPSHOT/webresources/generic/Cadastrar`;
 
             const params = new URLSearchParams();
             params.append('name', data.name);
             params.append('email', data.email);
             params.append('message', data.message);
-
-            console.log('passei33 ')
-            
-            
+                 
             await axios
             .post(url, params)
-            console.log('to passando3')
+        
             .then((data) => {
                 console.log('sucesso!!!', data.config)
                 toast.success('Contato enviado com sucesso!')
