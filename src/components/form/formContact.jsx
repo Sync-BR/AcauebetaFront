@@ -17,31 +17,35 @@ const FormContact = () => {
         try {
             reset()
 
-            const url = `https://zfaerp.hospedagemelastica.com.br/acaueBeta-1.0-SNAPSHOT/webresources/generic/Cadastrar`;
+            const url = `https://cflceb.hospedagemelastica.com.br/Painel/webresources/generic/Cadastrar`;
 
             const params = new URLSearchParams();
             params.append('name', data.name);
             params.append('email', data.email);
             params.append('message', data.message);
-                 
+
             try {
-                const response = await axios.post(url,params);
-                console.log("data on", data)
-                console.log("sucesso!", response.config)
-                toast.success('Contato enviado com sucesso!');
+                const response = await axios.post(url, params);
+                console.log("data env", response)
+                toast.success('Contato enviado com sucesso!',{
+                    position: 'bottom-left',
+                    closeOnClick: false,
+                    theme: "dark",
+
+                });
             } catch (err) {
                 console.error('Conexão Falhou', err)
                 toast.error('Ocorreu um erro ao enviar o contato!')
             }
-    
+
         } catch (error) {
             console.error('Erro:', error);
-            console.log('Cai na vara')
             toast.error('Erro ao enviar os dados, tente novamente.', {
                 position: 'bottom-left',
                 closeOnClick: false,
                 draggable: true,
-                
+                theme: "dark",
+
             })
         }
     };
